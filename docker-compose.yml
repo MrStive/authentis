@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  streamlit:
+    build: .
+    container_name: marketing_app
+    ports:
+      - '8501:8501'
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=marketing_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - marketing_net
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: marketing_db
+    environment:
+      - POSTGRES_DB=marketing_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - marketing_net
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:7-alpine
+    container_name: marketing_cache
+    networks:
+      - marketing_net
+    ports:
+      - '6379:6379'
+
+  nginx:
+    image: nginx:alpine
+    container_name: marketing_proxy
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - streamlit
+    networks:
+      - marketing_net
+
+networks:
+  marketing_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
