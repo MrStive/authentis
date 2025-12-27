@@ -53,7 +53,7 @@ st.markdown("---")
 st.subheader("Revenue Trend (Last 12 Months)")
 
 # Simulate monthly revenue for visualization
-dates = pd.date_range(end=pd.Timestamp.now(), periods=12, freq='M')
+dates = pd.date_range(end=pd.Timestamp.now(), periods=12, freq='ME')
 simulated_revenue = [total_revenue * 0.08 * (1 + np.random.uniform(-0.1, 0.1)) for _ in range(12)]
 revenue_df = pd.DataFrame({'Date': dates, 'Revenue': simulated_revenue})
 

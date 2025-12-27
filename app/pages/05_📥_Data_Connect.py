@@ -2,10 +2,13 @@
 import streamlit as st
 import pandas as pd
 import io
-from src.connectors import GA4Connector, SQLConnector
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Put root dir in path BEFORE importing from src
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from src.connectors import GA4Connector, SQLConnector
 from utils.style import apply_custom_style
 
 st.set_page_config(page_title="Data Connectivity", page_icon="📥", layout="wide")
