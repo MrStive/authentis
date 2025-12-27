@@ -5,8 +5,13 @@ from pptx import Presentation
 from pptx.util import Inches
 import io
 import datetime
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.style import apply_custom_style
 
 st.set_page_config(page_title="Automated Reporting", page_icon="📈", layout="wide")
+apply_custom_style()
 
 st.title("📈 Automated Reporting")
 

@@ -3,8 +3,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.style import apply_custom_style
 
 st.set_page_config(page_title="Predictions & Simulations", page_icon="🔮", layout="wide")
+apply_custom_style()
 
 st.title("🔮 Predictions & Simulations")
 

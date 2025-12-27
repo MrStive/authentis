@@ -18,6 +18,7 @@ RUN pip install --prefix=/install -r requirements.txt
 FROM python:3.12-slim
 
 WORKDIR /app
+ENV PYTHONPATH=/app
 
 # Install runtime dependencies (if any specific libs like libpq for postgres are needed)
 # scikit-learn and others might need libgomp1

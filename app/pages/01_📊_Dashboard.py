@@ -4,8 +4,17 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 
+# Add root to path
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from utils.style import apply_custom_style
+
 # Page Configuration
 st.set_page_config(page_title="Executive Dashboard", page_icon="📊", layout="wide")
+
+# Apply Global CSS
+apply_custom_style()
 
 st.title("📊 Executive Dashboard")
 
